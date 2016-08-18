@@ -16,3 +16,15 @@
 .right{
   text-align: right;
 }
+
+.button{
+  font-size: 30px;
+}
+
+.button-small{
+  font-size: 18px;
+}
+
+.result{
+  font-size: 38px;
+}
