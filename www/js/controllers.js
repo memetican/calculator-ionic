@@ -7,6 +7,10 @@ app.controller('CalcCtrl', function($scope) {
   var op = "";
   $scope.result = "0.";
   $scope.sendInput = function (input) {
+    if(op == '='){
+      num1="";
+      op="";
+    }
     if (!op) {
       num1 += input;
       $scope.result = num1;
@@ -21,20 +25,19 @@ app.controller('CalcCtrl', function($scope) {
       $scope.sendInput('.');
   };
   $scope.operate = function (input) {
-    if(!op)
+    if(!op || op=='=')
       op = input;
     if(op && num1 && num2) {
-      calculate(input);
-      op = input;
+      $scope.calculate(input);
     }
   };
   $scope.calculate = function (input) {
     switch (op) {
       case "+":
-        $scope.result = num1 + num2;
+        $scope.result = num1 * 1 +  num2 * 1;
         break;
       case "-":
-        $scope.result = num1 - num2;
+        $scope.result = num1 * 1 - num2 * 1;
         break;
       case "x":
         $scope.result = num1 * num2;
@@ -43,12 +46,9 @@ app.controller('CalcCtrl', function($scope) {
         $scope.result = num1 / num2;
         break;
     }
-    if(input)
-      num1 = $scope.result;
-    else
-      num1 = num2 = "";
-    op = "";
-    return 0;
+    num1 = $scope.result;
+    op = input;
+    num2 = "";
   };
 
 });
