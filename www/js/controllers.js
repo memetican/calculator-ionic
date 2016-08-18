@@ -1,11 +1,10 @@
 var app = angular.module('starter.controllers', []);
 
 app.controller('CalcCtrl', function($scope) {
-  $scope.test = "HI";
   var num1 = "";
   var num2 = "";
   var op = "";
-  $scope.result = "0.";
+  $scope.result = "0";
   $scope.sendInput = function (input) {
     if(op == '='){
       num1="";
@@ -21,7 +20,7 @@ app.controller('CalcCtrl', function($scope) {
     }
   };
   $scope.handleDot = function () {
-    if (!$scope.result.toString().indexOf('.')<0)
+    if ($scope.result.indexOf('.')<0)
       $scope.sendInput('.');
   };
   $scope.operate = function (input) {
