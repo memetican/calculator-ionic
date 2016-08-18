@@ -20,7 +20,7 @@ app.controller('CalcCtrl', function($scope) {
     }
   };
   $scope.handleDot = function () {
-    if ($scope.result.indexOf('.')<0)
+    if ($scope.result.toString().indexOf('.')<0)
       $scope.sendInput('.');
   };
   $scope.operate = function (input) {
@@ -50,6 +50,11 @@ app.controller('CalcCtrl', function($scope) {
     num2 = "";
   };
 
+  $scope.clear = function () {
+    num1 = num2 = op = "";
+    $scope.result = 0;
+  }
+
 });
 
 app.directive('numPad', function() {
@@ -66,7 +71,7 @@ app.directive('numPad', function() {
         scope.calc(input);
       }
     },
-    template: '<button  class="col button button-stable" ng-click="sendInput(val)">{{val}}</button>'
+    template: '<button  class="col button" ng-click="sendInput(val)">{{val}}</button>'
   }
 });
 
