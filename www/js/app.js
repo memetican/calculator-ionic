@@ -40,15 +40,28 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.calc', {
-    url: '/calc',
+
+
+  .state('tab.about', {
+    url: '/about',
     views: {
-      'calc-pane': {
-        templateUrl: 'templates/calc-pad.html',
-        controller: 'CalcCtrl'
+      'tab-about': {
+        templateUrl: 'templates/tab-about.html',
+        controller: 'AboutCtrl'
       }
     }
-  });
+
+
+  })
+    .state('tab.calc', {
+      url: '/calc',
+      views: {
+        'calc-pane': {
+          templateUrl: 'templates/calc-pad.html',
+          controller: 'CalcCtrl'
+        }
+      }
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/calc');

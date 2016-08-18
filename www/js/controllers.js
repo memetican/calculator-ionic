@@ -76,4 +76,6 @@ app.directive('numPad', function() {
 });
 
 
+app.controller('AboutCtrl', function($scope, $stateParams) {
 
+});
