@@ -53,15 +53,24 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
 
   })
-    .state('tab.calc', {
-      url: '/calc',
-      views: {
-        'calc-pane': {
-          templateUrl: 'templates/calc-pad.html',
-          controller: 'CalcCtrl'
-        }
+  .state('tab.history', {
+    url: '/history',
+    views: {
+      'tab-history': {
+        templateUrl: 'templates/tab-history.html',
+        controller: 'HistoryCtrl'
       }
-    });
+    }
+  })
+  .state('tab.calc', {
+    url: '/calc',
+    views: {
+      'calc-pane': {
+        templateUrl: 'templates/calc-pad.html',
+        controller: 'CalcCtrl'
+      }
+    }
+  });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/calc');

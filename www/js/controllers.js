@@ -76,6 +76,19 @@ app.directive('numPad', function() {
 });
 
 
+
+app.controller('HistoryCtrl', function($scope, $stateParams) {
+
+  $scope.items = {};
+  firebase.database().ref("/history").on('value',function (snapshot) {
+     $scope.items = snapshot.val();
+    $scope.$apply();
+  })
+
+});
+
+
 app.controller('AboutCtrl', function($scope, $stateParams) {
 
 });
+
