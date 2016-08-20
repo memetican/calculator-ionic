@@ -69,10 +69,6 @@ app.controller('CalcCtrl', function($scope) {
     $scope.result = 0;
   };
 
-  var saveToDb = function (item) {
-    var newKey = firebase.database().ref().child("hitsory").push().key;
-    firebase.database().ref("history/"+newKey).set(item);
-  };
 
 });
 
@@ -101,8 +97,14 @@ app.controller('HistoryCtrl', function($scope, $stateParams) {
   $scope.items = {};
   firebase.database().ref("/history").on('value',function (snapshot) {
      $scope.items = snapshot.val();
-    $scope.$apply();
-  })
+    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
+      $scope.$apply();
+    }
+  });
+
+  $scope.removeItem = function (id) {
+    firebase.database().ref("/history/"+id).remove();
+  };
 
 });
 

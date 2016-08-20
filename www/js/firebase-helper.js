@@ -11,6 +11,9 @@ var config = {
 };
 var dbApp = firebase.initializeApp(config);
 
-var database = firebase.database();
-
+var saveToDb = function (item) {
+  var newKey = firebase.database().ref().child("hitsory").push().key;
+  item["key"] = newKey;
+  firebase.database().ref("history/"+newKey).set(item);
+};
 
