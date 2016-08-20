@@ -31,29 +31,48 @@ app.controller('CalcCtrl', function($scope) {
     }
   };
   $scope.calculate = function (input) {
+    var opid = 0;
     switch (op) {
       case "+":
         $scope.result = num1 * 1 +  num2 * 1;
+        opid = 0;
         break;
       case "-":
         $scope.result = num1 * 1 - num2 * 1;
+        opid = 1;
         break;
       case "x":
         $scope.result = num1 * num2;
+        opid = 2;
         break;
       case "/":
         $scope.result = num1 / num2;
+        opid = 3;
         break;
     }
+
+    saveToDb({
+      "equation": num1 + " " + op + " " + num2 + " = " + $scope.result,
+      "date": new Date().toLocaleString(),
+      "imageid": opid
+    });
+
     num1 = $scope.result;
     op = input;
     num2 = "";
+
+
   };
 
   $scope.clear = function () {
     num1 = num2 = op = "";
     $scope.result = 0;
-  }
+  };
+
+  var saveToDb = function (item) {
+    var newKey = firebase.database().ref().child("hitsory").push().key;
+    firebase.database().ref("history/"+newKey).set(item);
+  };
 
 });
 
